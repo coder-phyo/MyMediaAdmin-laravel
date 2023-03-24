@@ -14,11 +14,11 @@
     <div class="container">
         <div class="row mt-3">
             <div class="col-sm-6 col-md-4">
-                <button class="btn btn-dark w-50 my-2">Profile</button>
-                <button class="btn btn-dark w-50 my-2">Admin List</button>
-                <button class="btn btn-dark w-50 my-2">Category</button>
-                <button class="btn btn-dark w-50 my-2">Post</button>
-                <button class="btn btn-dark w-50 my-2">Trend Post</button>
+                <a href="{{ route('dashboard') }}"><button class="btn btn-dark w-50 my-2">Profile</button></a>
+                <a href="{{ route('admin#list') }}"> <button class="btn btn-dark w-50 my-2">Admin List</button></a>
+                <a href="{{ route('admin#category') }}"> <button class="btn btn-dark w-50 my-2">Category</button></a>
+                <a href="{{ route('admin#post') }}"> <button class="btn btn-dark w-50 my-2">Post</button></a>
+                <a href="{{ route('admin#trendPost') }}"><button class="btn btn-dark w-50 my-2">Trend Post</button></a>
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <button class="btn btn-dark w-50 my-2" type="submit">Logout</button>
