@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Media</title>
+    <title>My Media App</title>
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -25,7 +25,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="#" class="brand-link">
 
-                <span class="brand-text font-weight-light">My Media </span>
+                <span class="brand-text font-weight-light">My Media App</span>
             </a>
             <div class="sidebar">
                 <nav class="mt-2">

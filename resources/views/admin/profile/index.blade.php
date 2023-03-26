@@ -14,41 +14,41 @@
                                 <div class="form-group row">
                                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputName" placeholder="Enter Name">
+                                        <input type="text" class="form-control" id="inputName"
+                                            placeholder="Enter Name..." value="{{ $user->name }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control" id="inputEmail"
-                                            placeholder="Enter Email">
+                                            placeholder="Enter Email..." value="{{ $user->email }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Phone</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail"
-                                            placeholder="Enter Phone">
+                                        <input type="number" class="form-control" id="inputEmail"
+                                            placeholder="Enter Phone..." value="{{ $user->phone }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail"
-                                            placeholder="Enter Address">
+                                        <textarea class="form-control" cols="30" rows="10" placeholder="Enter Address...">{{ $user->address }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Gender</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail"
-                                            placeholder="Enter Gender">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="offset-sm-2 col-sm-10">
-                                        <a href="">Change Password</a>
+                                        <select name="" id="" class="form-control">
+                                            <option value="empty" {{ $user->gender === null ? 'selected' : '' }}>Choose Gender
+                                            </option>
+                                            <option value="male" {{ $user->gender === 'male' ? 'selected' : '' }}>Male
+                                            </option>
+                                            <option value="female"{{ $user->gender === 'female' ? 'selected' : '' }}>Female
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -57,7 +57,11 @@
                                     </div>
                                 </div>
                             </form>
-
+                            <div class="form-group row">
+                                <div class="offset-sm-2 col-sm-10">
+                                    <a href="">Change Password</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
