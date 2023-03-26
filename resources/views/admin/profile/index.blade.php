@@ -10,33 +10,53 @@
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="active tab-pane" id="activity">
+                            {{-- alert start --}}
+                            @if (Session::has('updateSuccess'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>{{ Session::get('updateSuccess') }}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+                            {{-- alert end --}}
                             <form class="form-horizontal" action="{{ route('admin#update') }}" method="post">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputName" name="adminName"
-                                            placeholder="Enter Name..." value="{{ $user->name }}">
+                                        <input type="text" class="form-control @error('adminName') is-invalid @enderror"
+                                            id="inputName" name="adminName" placeholder="Enter Name..."
+                                            value="{{ old('adminName', $user->name) }}">
+                                        @error('adminName')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
+
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail" name="adminEmail"
-                                            placeholder="Enter Email..." value="{{ $user->email }}">
+                                        <input type="email" class="form-control @error('adminEmail') is-invalid @enderror"
+                                            id="inputEmail" name="adminEmail" placeholder="Enter Email..."
+                                            value="{{ old('adminEmail', $user->email) }}">
+                                        @error('adminEmail')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
+
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Phone</label>
                                     <div class="col-sm-10">
                                         <input type="number" class="form-control" id="inputEmail" name="adminPhone"
-                                            placeholder="Enter Phone..." value="{{ $user->phone }}">
+                                            placeholder="Enter Phone..." value="{{ old('adminPhone', $user->phone) }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" cols="30" rows="10" placeholder="Enter Address..." name="adminAddress">{{ $user->address }}</textarea>
+                                        <textarea class="form-control" cols="30" rows="10" placeholder="Enter Address..." name="adminAddress">{{ old('adminAddress', $user->address) }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
