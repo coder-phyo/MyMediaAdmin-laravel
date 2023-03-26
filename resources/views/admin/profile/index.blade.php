@@ -10,39 +10,41 @@
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="active tab-pane" id="activity">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" action="{{ route('admin#update') }}" method="post">
+                                @csrf
                                 <div class="form-group row">
                                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputName"
+                                        <input type="text" class="form-control" id="inputName" name="adminName"
                                             placeholder="Enter Name..." value="{{ $user->name }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail"
+                                        <input type="email" class="form-control" id="inputEmail" name="adminEmail"
                                             placeholder="Enter Email..." value="{{ $user->email }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Phone</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="inputEmail"
+                                        <input type="number" class="form-control" id="inputEmail" name="adminPhone"
                                             placeholder="Enter Phone..." value="{{ $user->phone }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" cols="30" rows="10" placeholder="Enter Address...">{{ $user->address }}</textarea>
+                                        <textarea class="form-control" cols="30" rows="10" placeholder="Enter Address..." name="adminAddress">{{ $user->address }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Gender</label>
                                     <div class="col-sm-10">
-                                        <select name="" id="" class="form-control">
-                                            <option value="empty" {{ $user->gender === null ? 'selected' : '' }}>Choose Gender
+                                        <select name="adminGender" id="" class="form-control">
+                                            <option value="empty" {{ $user->gender === null ? 'selected' : '' }}>Choose
+                                                Gender
                                             </option>
                                             <option value="male" {{ $user->gender === 'male' ? 'selected' : '' }}>Male
                                             </option>

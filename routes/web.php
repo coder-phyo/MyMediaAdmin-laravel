@@ -18,6 +18,7 @@ Route::middleware([
 ])->group(function () {
     // admin profile
     Route::get('dashboard', [ProfileController::class, 'index'])->name('dashboard');
+    Route::post('admin/update', [ProfileController::class, 'adminAccountUpdate'])->name('admin#update');
 
     // admin list
     Route::get('admin/list', [ListController::class, 'index'])->name('admin#list');
