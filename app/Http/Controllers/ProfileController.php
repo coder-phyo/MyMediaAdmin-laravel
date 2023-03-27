@@ -35,6 +35,18 @@ class ProfileController extends Controller
         return back()->with(['updateSuccess' => 'Admin Account Updated!']);
     }
 
+    // direct change password page
+    public function directPasswordChange()
+    {
+        return view('admin.profile.changePassword');
+    }
+
+    // change password
+    public function changePassword(Request $request)
+    {
+        $this->passwordValidationCheck($request);
+    }
+
     // get user data
     private function getUserData($request)
     {
@@ -55,9 +67,19 @@ class ProfileController extends Controller
             'adminName' => 'required',
             'adminEmail' => 'required',
         ], [
-            'adminName.required' => 'Admin name is required!',
-            'adminEmail.required' => 'Admin email is required!',
+            'adminName.required' => 'Name is required!',
+            'adminEmail.required' => 'Email is required!',
         ]);
 
+    }
+
+    // password validation check
+    private function passwordValidationCheck($request)
+    {
+        return Validator::make($request->all(), [
+            'oldPassword' => 'required',
+            'newPassword' => 'required',
+            'confirmPassword' => 'required',
+        ])->validate();
     }
 }

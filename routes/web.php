@@ -19,6 +19,8 @@ Route::middleware([
     // admin profile
     Route::get('dashboard', [ProfileController::class, 'index'])->name('dashboard');
     Route::post('admin/update', [ProfileController::class, 'adminAccountUpdate'])->name('admin#update');
+    Route::get('admin/changePassword', [ProfileController::class, 'directPasswordChange'])->name('admin#directPasswordChange');
+    Route::post('admin/changePassword', [ProfileController::class, 'changePassword'])->name('admin#changePassword');
 
     // admin list
     Route::get('admin/list', [ListController::class, 'index'])->name('admin#list');
