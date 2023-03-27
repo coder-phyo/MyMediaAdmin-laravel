@@ -11,9 +11,9 @@
                     <div class="tab-content">
                         <div class="active tab-pane" id="activity">
                             {{-- alert start --}}
-                            @if (Session::has('updateSuccess'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>{{ Session::get('updateSuccess') }}</strong>
+                            @if (Session::has('fail'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>{{ Session::get('fail') }}</strong>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -27,8 +27,7 @@
                                     <div class="col-sm-10">
                                         <input type="password"
                                             class="form-control @error('oldPassword') is-invalid @enderror" id="inputName"
-                                            name="oldPassword" placeholder="Enter your old password..."
-                                            value="{{ old('oldPassword') }}">
+                                            name="oldPassword" placeholder="Enter your old password...">
                                         @error('oldPassword')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -40,8 +39,7 @@
                                     <div class="col-sm-10">
                                         <input type="password"
                                             class="form-control @error('newPassword') is-invalid @enderror" id="inputEmail"
-                                            name="newPassword" placeholder="Enter your new password..."
-                                            value="{{ old('newPassword') }}">
+                                            name="newPassword" placeholder="Enter your new password...">
                                         @error('newPassword')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -53,7 +51,7 @@
                                     <div class="col-sm-10">
                                         <input type="password"
                                             class="form-control @error('confirmPassword') is-invalid @enderror"
-                                            id="inputEmail" name="adminPhone" placeholder="Enter confirm password...">
+                                            id="inputEmail" name="confirmPassword" placeholder="Enter confirm password...">
                                         @error('confirmPassword')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
