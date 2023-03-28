@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class ListController extends Controller
 {
@@ -19,5 +20,18 @@ class ListController extends Controller
     {
         User::where('id', $id)->delete();
         return back()->with(['deleteSuccess' => 'User Account Deleted!']);
+    }
+
+    // search list
+    public function adminListSearch(Request $request)
+    {
+        $userData = User::orWhere('name', 'like', '%' . $request->adminSearchKey . '%')
+            ->orWhere('email', 'like', '%' . $request->adminSearchKey . '%')
+            ->orWhere('phone', 'like', '%' . $request->adminSearchKey . '%')
+            ->orWhere('address', 'like', '%' . $request->adminSearchKey . '%')
+            ->orWhere('gender', 'like', '%' . $request->adminSearchKey . '%')
+            ->get();
+        return view('admin.list.index', compact('userData'));
+
     }
 }

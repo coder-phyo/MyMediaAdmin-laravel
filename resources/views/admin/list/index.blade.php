@@ -19,15 +19,19 @@
                 <h3 class="card-title">Admin List Page</h3>
 
                 <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                    <form action="{{ route('admin#adminListSearch') }}" method="POST">
+                        @csrf
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="adminSearchKey" class="form-control float-right"
+                                value="{{ old('adminSearchKey') }}" placeholder="Search">
 
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default">
-                                <i class="fas fa-search"></i>
-                            </button>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <!-- /.card-header -->
@@ -56,11 +60,11 @@
                                 <td>{{ $item->gender }}</td>
                                 <td>
                                     {{-- <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button> --}}
-                                    <a
-                                        @if (count($userData) === 1) href="#" @else href="{{ route('admin#deleteAccount', $item->id) }}" @endif>
-                                        <button class="btn btn-sm bg-danger text-white"
-                                            {{ count($userData) === 1 ? 'disabled' : '' }}><i
-                                                class="fas fa-trash-alt"></i></button></a>
+                                    @if (auth()->user()->id !== $item->id)
+                                        <a href="{{ route('admin#deleteAccount', $item->id) }}">
+                                            <button class="btn btn-sm bg-danger text-white"><i
+                                                    class="fas fa-trash-alt"></i></button></a>
+                                    @endif
 
                                 </td>
                             </tr>
