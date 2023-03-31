@@ -31,7 +31,9 @@ Route::middleware([
     Route::get('category', [CategoryController::class, 'index'])->name('admin#category');
     Route::post('category/create', [CategoryController::class, 'createCategory'])->name('admin#createCategory');
     Route::get('category/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('admin#deleteCategory');
-    Route::post('categor/search', [CategoryController::class, 'categorySearch'])->name('admin#categorySearch');
+    Route::post('category', [CategoryController::class, 'categorySearch'])->name('admin#categorySearch');
+    Route::get('category/editPage/{id}', [CategoryController::class, 'categoryEditPage'])->name('admin#categoryEditPage');
+    Route::post('category/update/{id}', [CategoryController::class, 'categoryUpdate'])->name('admin#categoryUpdate');
 
     // post
     Route::get('post', [PostController::class, 'index'])->name('admin#post');
