@@ -28,20 +28,36 @@
         </div>
     </div>
     <div class="col-8">
+        <div class="offset-7 col-5">
+            {{-- alert start --}}
+            @if (Session::has('deleteSuccess'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ Session::get('deleteSuccess') }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+            {{-- alert end --}}
+        </div>
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Category Page</h3>
 
                 <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                    <form action="{{ route('admin#categorySearch') }}" method="POST">
+                        @csrf
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="categorySearch" class="form-control float-right"
+                                placeholder="Search">
 
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default">
-                                <i class="fas fa-search"></i>
-                            </button>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <!-- /.card-header -->
@@ -63,9 +79,9 @@
                                 <td>{{ $c->description }}</td>
                                 <td>
                                     <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                    <a href="#">
+                                    <a href="{{ route('admin#deleteCategory', $c->category_id) }}">
                                         <button class="btn btn-sm bg-danger text-white"><i
-                                        class="fas fa-trash-alt"></i></button>
+                                                class="fas fa-trash-alt"></i></button>
                                     </a>
                                 </td>
                             </tr>

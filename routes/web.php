@@ -29,7 +29,9 @@ Route::middleware([
 
     // category
     Route::get('category', [CategoryController::class, 'index'])->name('admin#category');
-    Route::post('category/create',[CategoryController::class,'createCategory'])->name('admin#createCategory');
+    Route::post('category/create', [CategoryController::class, 'createCategory'])->name('admin#createCategory');
+    Route::get('category/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('admin#deleteCategory');
+    Route::post('categor/search', [CategoryController::class, 'categorySearch'])->name('admin#categorySearch');
 
     // post
     Route::get('post', [PostController::class, 'index'])->name('admin#post');

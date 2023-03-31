@@ -26,6 +26,21 @@ class CategoryController extends Controller
         return back();
     }
 
+    // delete category
+    public function deleteCategory($id)
+    {
+        Category::where('category_id', $id)->delete();
+        return back()->with(['deleteSuccess' => 'Category Delected!']);
+    }
+
+    // search category
+    public function categorySearch(Request $request)
+    {
+        $category = Category::where('title', 'like', '%' . $request->categorySearch . '%')->get();
+        return view('admin.category.index', compact('category'));
+
+    }
+
     // get category data
     private function getCategoryData($request)
     {
