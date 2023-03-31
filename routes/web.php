@@ -29,6 +29,7 @@ Route::middleware([
 
     // category
     Route::get('category', [CategoryController::class, 'index'])->name('admin#category');
+    Route::post('category/create',[CategoryController::class,'createCategory'])->name('admin#createCategory');
 
     // post
     Route::get('post', [PostController::class, 'index'])->name('admin#post');
