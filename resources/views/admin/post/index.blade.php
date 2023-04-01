@@ -68,28 +68,33 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Post Name</th>
-                            <th>Description</th>
+                            <th>Title</th>
+                            <th>Image</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($category as $c)
+                        @foreach ($post as $item)
                             <tr>
-                                <td>{{ $c->category_id }}</td>
-                                <td>{{ $c->title }}</td>
-                                <td>{{ $c->description }}</td>
+                                <td>{{ $item->post_id }}</td>
+                                <td>{{ $item->title }}</td>
                                 <td>
-                                    <a href="{{ route('admin#categoryEditPage', $c->category_id) }}">
+                                    <img @if ($item->image === null) src="{{ asset('defaultImg/default-image.jpg') }}"
+                                    @else
+                                    src="{{ asset('storage/postImage/' . $item->image) }}" @endif
+                                        class="w-25 rounded shadow-sm">
+                                </td>
+                                <td>
+                                    <a href="">
                                         <button class="btn btn-sm bg-dark text-white"><i
                                                 class="fas fa-edit"></i></button></a>
-                                    <a href="{{ route('admin#deleteCategory', $c->category_id) }}">
+                                    <a href="">
                                         <button class="btn btn-sm bg-danger text-white"><i
                                                 class="fas fa-trash-alt"></i></button>
                                     </a>
                                 </td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,14 +14,25 @@ class PostController extends Controller
     public function index()
     {
         $category = Category::get();
-        return view('admin.post.index', compact('category'));
+        $post = Post::get();
+        return view('admin.post.index', compact('category', 'post'));
     }
 
     // creat post
     public function createPost(Request $request)
     {
         $this->postValidationCheck($request);
-        dd('ok');
+        $data = $this->getPostData($request);
+
+        if ($request->hasFile('postImage')) {
+            $file = $request->file('postImage');
+            $fileName = uniqid() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/postImage', $fileName);
+            $data['image'] = $fileName;
+        }
+
+        Post::create($data);
+        return back();
     }
 
     // post validation check
@@ -31,5 +43,15 @@ class PostController extends Controller
             'postDescription' => 'required',
             'postCategory' => 'required',
         ])->validate();
+    }
+
+    // get post data
+    private function getPostData($request)
+    {
+        return [
+            'title' => $request->postTitle,
+            'description' => $request->postDescription,
+            'category_id' => $request->postCategory,
+        ];
     }
 }
