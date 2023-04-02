@@ -40,6 +40,7 @@ Route::middleware([
     Route::post('post/create', [PostController::class, 'createPost'])->name('admin#createPost');
     Route::get('post/delete/{id}', [PostController::class, 'deletePost'])->name('admin#deletePost');
     Route::get('post/editPage/{id}', [PostController::class, 'postEditPage'])->name('admin#postEditPage');
+    Route::post('post/update/{id}', [PostController::class, 'updatePost'])->name('admin#updatePost');
 
     // trend post
     Route::get('trendPost', [TrendPostController::class, 'index'])->name('admin#trendPost');

@@ -4,7 +4,8 @@
     <div class="col-4">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('admin#createPost') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin#updatePost', $postDetail->post_id) }}" method="post"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Title</label>
@@ -25,12 +26,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Image</label>
-                        {{-- <input type="file" class="form-control" id="formFile" name="postImage"> --}}
                         <img @if ($postDetail->image === null) src="{{ asset('defaultImg/default-image.jpg') }}"
                         @else
                         src="{{ asset('storage/postImage/' . $postDetail->image) }}" @endif
                             class="w-100 rounded shadow">
 
+                        <input type="file" name="postImage" class="form-control mt-2">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Category</label>
