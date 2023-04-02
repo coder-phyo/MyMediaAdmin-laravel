@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -32,6 +33,19 @@ class PostController extends Controller
         }
 
         Post::create($data);
+        return back();
+    }
+
+    // delete post
+    public function deletePost($id)
+    {
+        $dbImage = Post::where('post_id', $id)->first();
+        $dbImage = $dbImage->image;
+
+        if ($dbImage !== null) {
+            Storage::delete('public/postImage/' . $dbImage);
+        }
+        Post::where('post_id', $id)->delete();
         return back();
     }
 

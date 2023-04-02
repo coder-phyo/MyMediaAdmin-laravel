@@ -88,7 +88,7 @@
                                     <a href="">
                                         <button class="btn btn-sm bg-dark text-white"><i
                                                 class="fas fa-edit"></i></button></a>
-                                    <a href="">
+                                    <a href="{{ route('admin#deletePost', $item->post_id) }}">
                                         <button class="btn btn-sm bg-danger text-white"><i
                                                 class="fas fa-trash-alt"></i></button>
                                     </a>
