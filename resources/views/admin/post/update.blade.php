@@ -9,8 +9,8 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Title</label>
                         <input type="text" class="form-control @error('postTitle') is-invalid @enderror"
-                            value="{{ old('postTitle') }}" id="exampleFormControlInput1" name="postTitle"
-                            placeholder="Enter post title...">
+                            value="{{ old('postTitle', $postDetail->title) }}" id="exampleFormControlInput1"
+                            name="postTitle" placeholder="Enter post title...">
                         @error('postTitle')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -18,14 +18,18 @@
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Description</label>
                         <textarea class="form-control  @error('postDescription') is-invalid @enderror" id="exampleFormControlTextarea1"
-                            rows="3" name="postDescription" placeholder="Enter post description...">{{ old('postTitle') }}</textarea>
+                            rows="3" name="postDescription" placeholder="Enter post description...">{{ old('postTitle', $postDetail->description) }}</textarea>
                         @error('postDescription')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Image</label>
-                        <input type="file" class="form-control" id="formFile" name="postImage">
+                        {{-- <input type="file" class="form-control" id="formFile" name="postImage"> --}}
+                        <img @if ($postDetail->image === null) src="{{ asset('defaultImg/default-image.jpg') }}"
+                        @else
+                        src="{{ asset('storage/postImage/' . $postDetail->image) }}" @endif
+                            class="w-100 rounded shadow">
 
                     </div>
                     <div class="mb-3">
@@ -34,14 +38,17 @@
                             class="form-control  @error('postCategory') is-invalid @enderror"">
                             <option value="">choose category</option>
                             @foreach ($category as $item)
-                                <option value="{{ $item->category_id }}">{{ $item->title }}</option>
+                                <option value="{{ $item->category_id }}"
+                                    {{ $item->category_id === $postDetail->category_id ? 'selected' : '' }}>
+                                    {{ $item->title }}
+                                </option>
                             @endforeach
                         </select>
                         @error('postCategory')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-                    <input type="submit" value="Create" class="btn btn-primary">
+                    <input type="submit" value="Update" class="btn btn-warning">
                 </form>
             </div>
         </div>
@@ -83,7 +90,7 @@
                                     <img @if ($item->image === null) src="{{ asset('defaultImg/default-image.jpg') }}"
                                     @else
                                     src="{{ asset('storage/postImage/' . $item->image) }}" @endif
-                                        class="w-25 rounded shadow-sm">
+                                        class="w-25 rounded shadow">
                                 </td>
                                 <td>
                                     <a href="{{ route('admin#postEditPage', $item->post_id) }}">

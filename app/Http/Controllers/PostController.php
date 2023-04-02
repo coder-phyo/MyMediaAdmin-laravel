@@ -49,6 +49,15 @@ class PostController extends Controller
         return back();
     }
 
+    // direct post edit page
+    public function postEditPage($id)
+    {
+        $postDetail = Post::where('post_id', $id)->first();
+        $category = Category::get();
+        $post = Post::get();
+        return view('admin.post.update', compact('postDetail', 'category', 'post'));
+    }
+
     // post validation check
     private function postValidationCheck($request)
     {
