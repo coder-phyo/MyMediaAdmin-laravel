@@ -33,4 +33,22 @@ class AuthController extends Controller
 
         }
     }
+
+    // user register release token
+    public function register(Request $request)
+    {
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ];
+        User::create($data);
+
+        $user = User::where('email', $request->email)->first();
+
+        return response()->json([
+            'user' => $user,
+            'token' => $user->createToken(time())->plainTextToken,
+        ]);
+    }
 }
