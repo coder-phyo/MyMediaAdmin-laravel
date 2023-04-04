@@ -13,6 +13,7 @@ class PostController extends Controller
         $post = Post::get();
 
         return response()->json([
+            'status' => 'success',
             'post' => $post,
         ]);
     }
