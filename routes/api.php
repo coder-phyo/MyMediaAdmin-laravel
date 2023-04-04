@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\AuthController;
 use App\Models\Category;
 
@@ -16,3 +17,5 @@ Route::get('category', function () {
         'data' => $category,
     ]);
 })->middleware('auth:sanctum');
+
+Route::get('allPostList', [PostController::class, 'getAllPost']);
