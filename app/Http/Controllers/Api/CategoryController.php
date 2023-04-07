@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -19,12 +18,15 @@ class CategoryController extends Controller
         ]);
     }
 
-    // search category
-    public function postSearch(Request $request)
+    // category search
+    public function categorySearch(Request $resquest)
     {
-        $post = Post::where('title', 'like', '%' . $request->key . '%')->get();
+        $category = Category::select('posts.*')
+            ->join('posts', 'categories.category_id', 'posts.category_id')
+            ->where('categories.title', 'like', '%' . $resquest->key . '%')
+            ->get();
         return response()->json([
-            'searchValue' => $post,
+            'result' => $category,
         ]);
     }
 }

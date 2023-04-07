@@ -13,7 +13,8 @@ Route::post('user/register', [AuthController::class, 'register']);
 
 // post
 Route::get('allPostList', [PostController::class, 'getAllPost']);
+Route::post('post/search', [PostController::class, 'postSearch']);
 
 // category
 Route::get('allCategory', [CategoryController::class, 'getAllCategory']);
-Route::post('post/search', [CategoryController::class, 'postSearch']);
+Route::post('category/search', [CategoryController::class, 'categorySearch']);
