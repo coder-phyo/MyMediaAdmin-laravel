@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ActionLogController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\AuthController;
@@ -19,3 +20,6 @@ Route::post('post/details', [PostController::class, 'postDetails']);
 // category
 Route::get('allCategory', [CategoryController::class, 'getAllCategory']);
 Route::post('category/search', [CategoryController::class, 'categorySearch']);
+
+// actionLog
+Route::post('post/actionLog', [ActionLogController::class, 'setActionLog']);
