@@ -24,62 +24,36 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Pizza Name</th>
+                            <th>Post Title</th>
                             <th>Image</th>
-                            <th>Price</th>
-                            <th>Publish Status</th>
-                            <th>Buy 1 Get 1 Status</th>
+                            <th>View Count</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Vegatable</td>
-                            <td>
-                                <img src="https://st.depositphotos.com/1003814/5052/i/950/depositphotos_50523105-stock-photo-pizza-with-tomatoes.jpg"
-                                    class="img-thumbnail" width="100px">
-                            </td>
-                            <td>20000 kyats</td>
-                            <td>Yes</td>
-                            <td>Yes</td>
-                            <td>
-                                <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Vegatable</td>
-                            <td>
-                                <img src="http://simply-delicious-food.com/wp-content/uploads/2020/06/Grilled-Pizza-Margherita-3.jpg"
-                                    class="img-thumbnail" width="100px">
-                            </td>
-                            <td>20000 kyats</td>
-                            <td>Yes</td>
-                            <td>Yes</td>
-                            <td>
-                                <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Vegatable</td>
-                            <td>
-                                <img src="https://www.biggerbolderbaking.com/wp-content/uploads/2019/07/15-Minute-Pizza-WS-Thumbnail.png"
-                                    class="img-thumbnail" width="100px">
-                            </td>
-                            <td>20000 kyats</td>
-                            <td>Yes</td>
-                            <td>Yes</td>
-                            <td>
-                                <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
+                        @foreach ($post as $item)
+                            <tr>
+                                <td>{{ $item->post_id }}</td>
+                                <td>{{ $item->title }}</td>
+                                <td>
+                                    <img @if ($item->image === null) src="{{ asset('defaultImg/default-image.jpg') }}"
+                                    @else
+                                        src="{{ asset('storage/postImage/' . $item->image) }}" @endif
+                                        class="img-thumbnail" width="100px">
+                                </td>
+                                <td><i class="fa-sharp fa-regular fa-eye fa-beat-fade fa-lg"></i> 0</td>
+                                <td>
+                                    <button class="btn btn-sm bg-dark text-white" title="see more"><i
+                                            class="fa-sharp fa-regular fa-file-lines fa-flip fa-lg"></i></button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+
+                <div class="d-flex justify-content-end mr-4">
+                    {{ $post->links() }}
+                </div>
             </div>
             <!-- /.card-body -->
         </div>
