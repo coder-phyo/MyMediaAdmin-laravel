@@ -39,12 +39,15 @@
                                     <img @if ($item->image === null) src="{{ asset('defaultImg/default-image.jpg') }}"
                                     @else
                                         src="{{ asset('storage/postImage/' . $item->image) }}" @endif
-                                        class="img-thumbnail" width="100px">
+                                        class="img-thumbnail shadow" width="100px">
                                 </td>
-                                <td><i class="fa-sharp fa-regular fa-eye fa-beat-fade fa-lg"></i> 0</td>
+                                <td><i class="fa-sharp fa-regular fa-eye fa-beat-fade fa-lg"></i> {{ $item->post_count }}
+                                </td>
                                 <td>
-                                    <button class="btn btn-sm bg-dark text-white" title="see more"><i
-                                            class="fa-sharp fa-regular fa-file-lines fa-flip fa-lg"></i></button>
+                                    <a href="{{ route('admin#trendPostDetails', $item->post_id) }}">
+                                        <button class="btn btn-sm bg-dark text-white" title="see more"><i
+                                                class="fa-sharp fa-regular fa-file-lines fa-flip fa-lg"></i></button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -52,7 +55,7 @@
                 </table>
 
                 <div class="d-flex justify-content-end mr-4">
-                    {{ $post->links() }}
+                    {{-- {{ $post->links() }} --}}
                 </div>
             </div>
             <!-- /.card-body -->
